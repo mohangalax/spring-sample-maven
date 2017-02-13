@@ -1,0 +1,5 @@
+<header>
+	<div id="header">
+		<img width="100%" src="<c:url value="/images/site-logo.png" context="/mediacentral"/>" alt="Media Central Logo" class="logo"/>
+	</div>
+</header>

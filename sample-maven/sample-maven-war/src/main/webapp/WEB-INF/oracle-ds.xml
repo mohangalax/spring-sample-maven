@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema">
+       <datasource jndi-name="java:jboss/datasources/sampleMavenDS" pool-name="sampleMavenDS" enabled="true" jta = "true">
+              <connection-url>jdbc:oracle:thin:@(description=(address_list=(load_balance=on)(failover=on)(address=(protocol=tcp)(host=${sample.datasource.url.host.primary})(port=${sample.datasource.url.port.primary}))(address=(protocol=tcp)(host=${sample.datasource.url.host.secondary})(port=${sample.datasource.url.port.secondary})))(connect_data=(service_name=${sample.datasource.url.servicename})(failover_mode=(type=select)(method=basic))))</connection-url>
+              <driver>oracle</driver>
+              <pool>
+                     <min-pool-size>50</min-pool-size>
+                     <max-pool-size>5000</max-pool-size>
+              </pool>
+              <security>
+
+                     <user-name>${sample.datasource.username}</user-name>
+                     <password>${sample.datasource.password}</password>
+              </security>
+              <validation>
+                 	 <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker"/>
+                     <stale-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleStaleConnectionChecker"/>
+                     <check-valid-connection-sql>SELECT 1 FROM DUAL</check-valid-connection-sql>
+                     <exception-sorter class-name="org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter" />
+                     <background-validation>true</background-validation>
+                     <background-validation-millis>180000</background-validation-millis>
+                     <validate-on-match>false</validate-on-match>
+                     
+              </validation>
+              <timeout>
+                     <blocking-timeout-millis>5000</blocking-timeout-millis>
+                     <idle-timeout-minutes>30</idle-timeout-minutes>
+              </timeout>
+       </datasource>
+</datasources>

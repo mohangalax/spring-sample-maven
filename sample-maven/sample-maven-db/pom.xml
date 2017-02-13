@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sample.maven</groupId>
+		<artifactId>sample-maven</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>sample-maven-db</artifactId>
+	<name>sample-maven-db</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<env>dev</env>
+		<!-- Default goal for liquibase if no profile selected. This is to avoid 
+			build issues. -->
+		<scm.rungoal>update</scm.rungoal>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-maven-plugin</artifactId>
+			<version>3.4.2</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<scm.rungoal>update</scm.rungoal>
+				<database.url>jdbc:oracle:thin:@brsoda6-scan.corp.sample.pvt:8685/SAMPLEDEV</database.url>
+				<database.username.sample>SAMPLE</database.username.sample>
+				<database.password.sample>SAMPLEDEV</database.password.sample>
+				<database.username.sample_user>SAMPLE_USER</database.username.sample_user>
+				<database.password.sample_user>SAMPLEDEV</database.password.sample_user>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>qa</id>
+			<properties>
+				<scm.rungoal>update</scm.rungoal>
+				<database.url>jdbc:oracle:thin:@brsoda6-scan.corp.sample.pvt:8685/SAMPLEQA</database.url>
+				<database.username.sample>SAMPLE</database.username.sample>
+				<database.password.sample>SAMPLEDEV</database.password.sample>
+				<database.username.sample_user>SAMPLE_USER</database.username.sample_user>
+				<database.password.sample_user>SAMPLEDEV</database.password.sample_user>
+			</properties>
+		</profile>
+		<profile>
+			<id>skip-liquibase</id>
+			<properties>
+				<skip-liquibase>true</skip-liquibase>
+				<scm.rungoal>status</scm.rungoal>
+			</properties>
+		</profile>
+	</profiles>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>3.4.2</version>
+				<executions>
+					<execution>
+						<id>sample</id>
+						<phase>install</phase>
+						<configuration>
+							<driver>oracle.jdbc.driver.OracleDriver</driver>
+							<url>${database.url}</url>
+							<username>${database.username.sample}</username>
+							<password>${database.password.sample}</password>
+							<changeLogFile>change-logs/sample-db-changelog-master.xml</changeLogFile>
+							<verbose>true</verbose>
+							<dropFirst>false</dropFirst>
+							<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+							<skip>false</skip>
+						</configuration>
+						<goals>
+							<goal>${scm.rungoal}</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>sample_user</id>
+						<phase>install</phase>
+						<configuration>
+							<driver>oracle.jdbc.driver.OracleDriver</driver>
+							<url>${database.url}</url>
+							<username>${database.username.sample_user}</username>
+							<password>${database.password.sample_user}</password>
+							<changeLogFile>change-logs/sample-synonym-changelog-master.xml</changeLogFile>
+							<verbose>true</verbose>
+							<dropFirst>false</dropFirst>
+							<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+							<skip>false</skip>
+						</configuration>
+						<goals>
+							<goal>${scm.rungoal}</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

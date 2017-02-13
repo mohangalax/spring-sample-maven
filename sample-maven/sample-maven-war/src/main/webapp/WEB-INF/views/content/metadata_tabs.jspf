@@ -1,0 +1,23 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<ul id="metadata-tabs" class="nav nav-tabs" style="border-bottom: none">
+	<li class="active"><a href="#showinfo-tab" data-toggle="tab"><spring:message code="form.label.content.tab.showinfo"/></a></li>
+	<li><a href="#category-tab" data-toggle="tab"><spring:message code="form.label.content.tab.category"/></a></li>
+	<li><a href="#actor-tab" data-toggle="tab"><spring:message code="form.label.content.tab.actors"/></a></li>
+	<li><a href="#artwork-tab" data-toggle="tab"><spring:message code="form.label.content.tab.artwork"/></a></li>
+	<li><a href="#epgoption-tab" data-toggle="tab"><spring:message code="form.label.content.tab.epgoptions"/></a></li>
+	<li><a href="#note-tab" data-toggle="tab"><spring:message code="form.label.content.tab.notes"/></a></li>
+</ul>
+
+<div class="panel panel-default">
+	<div class="panel-body" style="min-height: 860px;">
+		<div class="tab-content" style="display: table; width: 100%">
+			<%@include file="showinfo_tab_contents.jspf" %>
+			<%@include file="category_tab_contents.jspf" %>
+			<%@include file="actor_tab_contents.jspf" %>
+			<%@include file="artwork_tab_contents.jspf" %>
+			<%@include file="epgoption_tab_contents.jspf" %>
+			<%@include file="note_tab_contents.jspf" %>
+		</div>
+	</div>
+</div>

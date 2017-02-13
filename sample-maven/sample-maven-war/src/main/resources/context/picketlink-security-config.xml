@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<bean id="customPermissionEvaluator" class="com.espn.ese.ais.vod.ams.security.BasePermissionEvaluator" />
+	
+	<bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<property name="permissionEvaluator" ref="customPermissionEvaluator" />
+	</bean>
+
+	<!-- enable the @PreAuthorize and @PostAuthorize annotations in your code. -->
+	<!-- enable the @Secured annotation -->
+	<security:global-method-security pre-post-annotations="enabled">
+		<security:expression-handler ref="expressionHandler" />
+	</security:global-method-security>
+	
+	<security:http pattern="/css/**" security="none" />
+	<security:http pattern="/images/**" security="none" />
+	<security:http pattern="/403" security="none" /> 
+
+	<security:http entry-point-ref="entryPoint"
+		use-expressions="true">
+		<security:intercept-url pattern="/**"
+			access="isAuthenticated()" />
+		<security:custom-filter position="CAS_FILTER"
+			ref="authenticationFilter" />
+		<security:logout logout-url="/signout"
+			logout-success-url="/" />
+		<security:csrf disabled="true"/>
+	</security:http>
+
+	<bean id="authenticationFilter"
+		class="com.sample.maven.security.picketlink.PicketLinkAuthenticationFilter"
+		lazy-init="true">
+		<constructor-arg value="${picketlink.filter.processes.url}" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="serviceUrl" value="${picketlink.service.url}" />
+		<property name="authenticationFailureHandler">
+			<bean class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+				<constructor-arg value="/403" />
+			</bean>
+		</property>
+	</bean>
+	<security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider
+			ref="authenticationProvider" />
+	</security:authentication-manager>
+
+	<bean id="authenticationProvider"
+		class="com.sample.maven.security.picketlink.PicketLinkAuthenticationProvider"
+		lazy-init="true">
+		<property name="authenticationUserDetailsService">
+			<bean
+				class="com.espn.ese.ais.vod.ams.security.picketlink.PicketLinkAuthenticationUserDetailsService">
+				<constructor-arg ref="userDetailsService" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="userDetailsService"
+		class="com.sample.maven.security.SampleUserDetailsService" lazy-init="true" />
+
+</beans>

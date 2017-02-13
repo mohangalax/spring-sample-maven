@@ -1,0 +1,323 @@
+/* file: app.css - external style sheet for media-central web app ---  */
+/* -----------------------------------------------------< global rules >-- */
+
+body {
+    background-color: #333;
+}
+h1, h2, h3 {
+    color: darkblue;
+    font-family: 'Oswald', sans-serif;
+    font-variant: 
+    margin-top: 7px;
+}
+pre {
+    color: #F39;
+    background-color: #EEE
+}
+
+/* -----------------------------------------------------</ global rules >-- */
+
+
+/* -----------------------------------------------------< layout rules >-- */
+
+#container {
+    background-color: #FFF;
+    margin: 0 auto;
+    margin-top: 25px;
+    max-width: 1000px;
+    box-shadow: 0 0 16px 8px #999;
+    -webkit-box-shadow: 0 0 16px 8px #999;
+    /* chrome, safari */
+    -moz-box-shadow: 0 0 16px 8px #999;
+    /* firefox */
+    
+    border-radius: 12px;
+}
+
+/* main content area  */
+
+#content {
+    min-height: 800px;							/*TODO: Var that matches content-inner min-height */
+    padding: 10px 25px 35px 25px;
+    font-family: Arial, Sans-serif;
+    border-radius: 12px;
+}
+
+#content-data {
+	min-height: 580px;							/*TODO: var that matches content min-height */
+}
+
+/* dropdown menu font size - start */
+
+.dropdown-menu {
+    font-size: 12px;
+}
+/* dropdown menu font size - end */
+
+/* dropdown menu show on hover - start */
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+ /* dropdown menu show on hover - end */
+
+.page-filter {
+	padding-bottom: 10px;
+}
+
+footer {
+  border-radius: 0 0 12px 12px;
+  background-color: #000;
+  color: #fff;
+  overflow:hidden;
+}
+
+header{
+  border-radius: 12px 12px 0 0;
+}
+
+img.logo
+{
+  border-radius: 12px 12px 0 0;
+}
+
+.command-bar
+{
+  width = 100%;
+  background-color: #eee;
+  text-align: right;
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+
+.footer-left {
+	float: left;
+	padding-left: 15px;
+}
+
+.footer-right {
+	float: right;
+	padding-right: 15px;
+}
+
+
+#errormessages span {
+	margin-right:15px;
+}
+
+#errormessages li {
+	margin-left:45px;
+}
+
+/* -----------------------------------------------------</ layout rules >-- */
+
+/* -----------------------------------------------------< datatable rules >-- */
+
+/* updated datatable sorting icon - start */
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after {
+    display:none;
+}
+
+table.dataTable thead .sorting_desc::after {
+    display:none;
+}
+
+table.dataTable thead .sorting {
+   background-image: url('../images/sort_both.png');
+   background-repeat: no-repeat;
+   background-position: center right;
+}
+
+table.dataTable thead .sorting_asc {
+   background-image: url('../images/sort_asc.png');
+   background-repeat: no-repeat;
+   background-position: center right;
+}
+
+table.dataTable thead .sorting_desc {
+   background-image: url('../images/sort_desc.png');
+   background-repeat: no-repeat;
+   background-position: center right;
+}
+
+table.dataTable thead .dt-center,  table.dataTable tbody .dt-center, table.dataTable thead .dt-head-center{
+	text-align: center;
+}
+
+.media-word-wrap {
+	width:130px;
+    white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;
+}
+/* -----------------------------------------------------</ datatable rules >-- */
+
+
+/* -----------------------------------------------------< bootstrap overrides >-- */
+
+.navbar-inverse {
+    margin: 4px 6px 2px;
+    font-size: 14px;
+}
+.table-hover tbody tr:hover td {
+    background-color: #e9e9ff;
+}
+.table th {
+    background-color: rgb(36, 33, 64);
+    color: #fff;
+}
+.navbar-inverse .dropdown ul {
+    background: black;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #000, #999);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #000, #999);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #000, #999);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #000, #999);
+    /* Standard syntax (must be last) */
+}
+.navbar-inverse .dropdown ul li a {
+    color: white;
+}
+.navbar-inverse .dropdown ul li a:hover {
+    background: #406;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, #202, #406);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #202, #406);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #202, #406);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to left, #000, #406);
+    /* Standard syntax (must be last) */
+}
+.page-header {
+    padding-bottom: 0px;
+    margin: 0px 0 10px;
+    border-bottom: 1px solid #eee;
+}
+.btn {
+    margin-left:15px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+	background-color: #4b80a0;
+	color: #ffffff;
+}
+
+.nav-tabs > li > a, .nav-tabs > li > a:focus, .nav-tabs > li > a:hover {
+	background-color: #6194bc;
+	color: #ffffff;
+}
+
+.nav-tabs > li.disabled > a, .nav-tabs > li.disabled > a:focus, .nav-tabs > li.disabled > a:hover {
+	background-color: #659dca;
+	color: #4b80a0;
+}
+
+/* -----------------------------------------------------</ bootstrap overrides >-- */
+
+/* -----------------------------------------------------< select2 overrides >-- */
+.select2-results__option[aria-selected=true] {
+    display: none;
+}
+/* -----------------------------------------------------</ select2 overrides >-- */
+/* -----------------------------------------------------< system rules >-- */
+
+.form-group.required > .control-label:before, .control-label.required:before {
+  content:"* ";
+  color:red;
+}
+
+span.error-inline {
+	color:red;
+}
+
+.display-none {
+	display: none;
+}
+
+.forbidden .repeat-image {
+    margin-top: 20px;
+    position: relative;
+    height: 469px;
+    width: 100%;
+    background-image: url('../images/error-repeat.png');
+    background-repeat: repeat-x;
+}
+.forbidden .image403 {
+    background-image: url('../images/error-403.png');
+    background-repeat: no-repeat;
+}
+.forbidden .message {
+    font-family: "Verdana";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 23px;
+    padding-right: 30px;
+    color: white;
+}
+.forbidden .message a {
+    color: #FFFFFF;
+}
+.forbidden .instructions {
+    font-family: "Verdana";
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+    padding: 10px;
+    border: 1px solid #3c3c3c;
+    background-color: #2d2d2d;
+    background: rgba(45, 45, 45, 0.5);
+    color: white;
+}
+
+.forbidden .instructions ul{
+	padding-left: 15px;
+	width: 300px;
+	margin: 5px 0 5px 0;
+}
+.forbidden .main-image {
+    padding-top: 34px;
+    padding-left: 60px;
+    margin: 0 auto;
+    height: 469px;
+    width: 991px;
+}
+.forbidden .text-block {
+    width: 340px;
+}
+.forbidden .status {
+    font-family: "Verdana";
+    font-size: 36px;
+    font-weight: 800;
+    height: 10px;
+    color: white;
+}
+.forbidden .title {
+    font-family: "Verdana";
+    font-size: 20px;
+    font-weight: 400;
+    height: 30px;
+    color: white;
+}
+
+.platform-tab-info {
+	height: 10em;
+	display: flex;
+	align-items: center;
+	justify-content: center";
+}
+
+.platform-tab-info span {
+	border-radius: 10px;
+	border: 1px solid #A9A9A9;
+	padding: 15px;
+	color: red;
+}
+
+/* -----------------------------------------------------</ system rules >-- */

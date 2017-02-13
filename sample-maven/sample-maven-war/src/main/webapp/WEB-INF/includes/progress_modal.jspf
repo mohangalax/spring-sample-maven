@@ -1,0 +1,19 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!-- Search Progress Modal -->
+<div id="search-modal" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+	    <div class="modal-content">
+	        <div class="modal-header">
+	            <h4>${inProgressMsg}</h4>
+	        </div>
+	        <div class="modal-body" >
+	            <div style="height:100px">
+	              <div id ="search-spinner" style="position:fixed;top:50%;left:50%"></div>
+	            </div>
+	        </div>
+	        <div class="modal-footer" style="text-align: center">
+	        	<button type="button" class="btn btn-primary"><spring:message code="alert.button.cancel"/></button>
+	        </div>
+	    </div>
+	</div>
+</div>

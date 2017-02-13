@@ -1,0 +1,10 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="b" uri="http://ais.ese.espn.com/tags/bootstrap" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div id="note-tab" class="tab-pane fade">
+	<spring:message code="form.label.content.programmernotes" var="programmernotes"/>
+	<b:form-group label="${programmernotes}" labelFor="programmernotes" cssLabel="col-sm-3" cssBody="col-sm-8">
+		<form:textarea path="notes" cssClass="form-control" maxlength="500" rows="12"/>
+	</b:form-group>
+</div>

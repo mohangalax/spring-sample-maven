@@ -1,0 +1,32 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<div id="scheduled-assets-section" class="container-fluid<c:if test='${!isScheduledMaster}'> display-none</c:if>">
+	<div class="row" style="height: 10px">
+	</div>
+	<div class="row" style="height: 30px">
+		<strong><spring:message code="form.label.master.scheduled.asset"/></strong>
+	</div>
+	<div class="row">
+		<table id="scheduled-assets-table" class="table table-striped table-bordered dt-responsive">
+			<thead>
+		        <tr>
+		            <th><spring:message code="form.label.master.thead.assetname"/></th>
+		            <th><spring:message code="form.label.master.thead.licensestart"/></th>
+		            <th><spring:message code="form.label.master.thead.licenseend"/></th>
+		            <th><spring:message code="form.label.master.thead.provider"/></th>
+		            <th><spring:message code="form.label.master.thead.platform"/></th>
+		            <th><spring:message code="form.label.master.thead.assetstatus"/></th>
+		            <th><spring:message code="form.label.master.thead.action"/></th>
+		        </tr>
+		    </thead>
+		</table>
+	</div>
+	<div class="row pull-right">
+		<button id="add-new-asset" type="button" class="btn btn-primary"><spring:message code="form.button.master.newasset"/></button>
+	</div>
+	<div class="row" style="height: 50px">
+	</div>
+	
+	<form:hidden path="addAssetPlatformIds"/>
+</div>

@@ -1,0 +1,130 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="b" uri="http://ais.ese.espn.com/tags/bootstrap" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div id="showinfo-tab" class="tab-pane fade in active">
+	<spring:message code="form.label.content.airdate" var="airdate"/>
+	<b:form-group label="${airdate}" labelFor="airdate" cssLabel="col-sm-2" cssBody="col-sm-2 date" cssClass="required">
+		<div class="input-group input-append date datepicker" style="padding-left: 0px">
+		    <form:input id="airdate" path="episode.airdate" type="text" class="form-control" name="date" style="padding: 3px"/>
+		    <span class="input-group-addon add-on"><i class="glyphicon glyphicon-calendar"></i></span>
+		</div>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.titleid" var="titleid"/>
+	<b:form-group label="${titleid}" labelFor="titleid" cssLabel="col-sm-2" cssBody="col-sm-2" cssClass="required">
+		<form:input path="episode.titleId" cssClass="form-control" required="required" maxlength="10"/>
+		<form:errors path="episode.titleId" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.titlebrief" var="titlebrief"/>
+	<b:form-group label="${titlebrief}" labelFor="titlebrief" cssLabel="col-sm-2" cssBody="col-sm-4" cssClass="required">
+		<form:input path="episode.titleBrief" cssClass="form-control" required="required" maxlength="19"/>
+		<form:errors path="episode.titleBrief" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.title" var="title"/>
+	<b:form-group label="${title}" labelFor="title" cssLabel="col-sm-2" cssBody="col-sm-4" cssClass="required">
+		<form:input path="episode.title" cssClass="form-control" required="required" maxlength="128"/>
+		<form:errors path="episode.title" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.shortsummary" var="shortsummary"/>
+	<b:form-group label="${shortsummary}" labelFor="shortsummary" cssLabel="col-sm-2" cssBody="col-sm-8" cssClass="required">
+		<form:textarea path="episode.shortSummary" cssClass="form-control" required="required" maxlength="255"/>
+		<form:errors path="episode.shortSummary" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.runtime" var="runtime"/>
+	<spring:message code="form.label.content.runtimes" var="runtimes"/>
+	<b:form-group label="${runtime}" labelFor="runtime" cssLabel="col-sm-2" cssBody="col-sm-2" cssClass="required">
+		<c:choose>
+			<c:when test="${isAssetPage}">
+				<form:input path="episode.runTime" cssClass="form-control" required="required" readonly="true"/>
+				<form:errors path="episode.runTime" cssClass="validate-error"/>
+			</c:when>
+			<c:otherwise>
+				<form:select path="episode.runTime" class="selectpicker form-control" required="required">
+					<form:option value="" label=" "/>
+					<c:forEach items="${runtimes}" var="runtime">
+						<form:option value="${runtime}"/>
+					</c:forEach>
+				</form:select>
+			</c:otherwise>
+		</c:choose>		
+	</b:form-group>
+	
+	<spring:message code="form.label.content.year" var="year"/>
+	<b:form-group label="${year}" labelFor="year" cssLabel="col-sm-2" cssBody="col-sm-2" cssClass="required">
+		<form:input path="year" cssClass="form-control" required="required" maxlength="4"/>
+		<form:errors path="year" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.genre" var="genre"/>
+	<spring:message code="form.label.content.genres" var="genres"/>
+	<b:form-group label="${genre}" labelFor="genre" cssLabel="col-sm-2" cssBody="col-sm-3" cssClass="required">
+		<form:select path="genre" class="selectpicker form-control" required="required">
+			<form:option value="" label=" "/>
+			<c:forEach items="${genres}" var="genre">
+				<form:option value="${genre}"/>
+			</c:forEach>
+		</form:select>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.rating" var="rating"/>
+	<spring:message code="form.label.content.ratings" var="ratings"/>
+	<b:form-group label="${rating}" labelFor="rating" cssLabel="col-sm-2" cssBody="col-sm-3" cssClass="required">
+		<form:select path="rating" class="selectpicker form-control" required="required">
+			<form:option value="" label=" "/>
+			<c:forEach items="${ratings}" var="rating">
+				<form:option value="${rating}"/>
+			</c:forEach>
+		</form:select>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.audiotype" var="audiotype"/>
+	<spring:message code="form.label.content.audiotypes" var="audiotypes"/>
+	<b:form-group label="${audiotype}" labelFor="audiotype" cssLabel="col-sm-2" cssBody="col-sm-3" cssClass="required">
+		<form:select path="audioType" class="selectpicker form-control" required="required">
+			<form:option value="" label=" "/>
+			<c:forEach items="${audiotypes}" var="audiotype">
+				<c:if test="${audiotype eq 'Stereo&#x2C Mono'}">
+					<c:set var="audiotype" value="Stereo, Mono"/>
+				</c:if>
+				<form:option value="${audiotype}"/>
+			</c:forEach>
+		</form:select>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.season" var="season"/>
+	<b:form-group label="${season}" labelFor="season" cssLabel="col-sm-2" cssBody="col-sm-2">
+		<form:input path="episode.seasonNum" cssClass="form-control"/>
+		<form:errors path="episode.seasonNum" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.episodeno" var="episodeno"/>
+	<b:form-group label="${episodeno}" labelFor="episodeno" cssLabel="col-sm-2" cssBody="col-sm-2">
+		<form:input path="episode.episodeNum" cssClass="form-control"/>
+		<form:errors path="episode.episodeNum" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.episodename" var="episodename"/>
+	<b:form-group label="${episodename}" labelFor="episodename" cssLabel="col-sm-2" cssBody="col-sm-6">
+		<form:input path="episode.episodeName" cssClass="form-control" maxlength="50"/>
+		<form:errors path="episode.episodeName" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.episodeid" var="episodeid"/>
+	<b:form-group label="${episodeid}" labelFor="episodeid" cssLabel="col-sm-2" cssBody="col-sm-4">
+		<form:input path="episode.extEpisodeId" cssClass="form-control" maxlength="20"/>
+		<form:errors path="episode.extEpisodeId" cssClass="validate-error"/>
+	</b:form-group>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label"><spring:message code="form.label.content.seasonpremiere"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="episode.seasonPremiere"/></div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label"><spring:message code="form.label.content.seasonfinale"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="episode.seasonFinale"/></div>
+	</div>
+</div>

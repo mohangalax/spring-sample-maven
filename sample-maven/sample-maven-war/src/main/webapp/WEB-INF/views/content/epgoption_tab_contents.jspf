@@ -1,0 +1,53 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="b" uri="http://ais.ese.espn.com/tags/bootstrap" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div id="epgoption-tab" class="tab-pane fade">
+
+	<spring:message code="form.label.content.daysasnew" var="daysasnew"/>
+	<b:form-group label="${daysasnew}" labelFor="daysasnew" cssLabel="col-sm-3" cssBody="col-sm-1">
+		<form:input path="epgOption.daysNew" cssClass="form-control"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.daysaslc" var="daysaslc"/>
+	<b:form-group label="${daysaslc}" labelFor="daysaslc" cssLabel="col-sm-3" cssBody="col-sm-1">
+		<form:input path="epgOption.daysLc" cssClass="form-control"/>
+	</b:form-group>
+	
+	<spring:message code="form.label.content.languages" var="languages"/>
+	<b:form-group label="${languages}" labelFor="languages" cssLabel="col-sm-3" cssBody="col-sm-2">
+		<form:select path="epgOption.language" class="selectpicker form-control">
+			<form:option value="en" label="English"/>
+			<form:option value="es" label="Spanish"/>
+			<form:option value="pt" label="Portuguese"/>
+			<form:option value="fr" label="French"/>
+			<form:option value="de" label="German"/>
+			<form:option value="it" label="Italian"/>
+			<form:option value="ko" label="Korean"/>
+			<form:option value="zh" label="Chinese"/>
+		</form:select>
+	</b:form-group>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label"><spring:message code="form.label.content.canberesumed"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="epgOption.canBeResumed"/></div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label"><spring:message code="form.label.content.ffdisabled"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="epgOption.ffDisabled"/></div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label"><spring:message code="form.label.content.3dmode"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="epgOption.mode3d"/></div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label"><spring:message code="form.label.content.closedcaptioned"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="epgOption.closedCaption"/>  <i class="glyphicon glyphicon-subtitles" style="color:red"></i></div>
+	</div>
+	
+	<c:if test="${isAssetPage}">
+		<div class="form-group">
+			<label class="col-sm-3 control-label"><spring:message code="form.label.content.hdcontent"/></label> <div class="col-sm-1" style="padding-top: 7px"><form:checkbox path="hdContent"/>  <i class="glyphicon glyphicon-hd-video" style="color:red"></i></div>
+		</div>
+	</c:if>	 
+	
+</div>

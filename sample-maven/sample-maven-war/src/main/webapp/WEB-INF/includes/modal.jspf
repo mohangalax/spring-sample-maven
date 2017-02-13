@@ -1,0 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="b" uri="http://ais.ese.espn.com/tags/bootstrap" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<!-- Success message modal -->
+<b:modal modalId="successModal" modalIcon="glyphicon-ok-sign">
+	<c:if test='${!isUpdate}'>
+		<a href="${add}" class="btn btn-default"><spring:message code="alert.button.addanother"/></a>
+	</c:if>
+    <a href="" class="btn btn-primary"><spring:message code="alert.button.ok"/></a>
+</b:modal>
+
+<!-- Remove Platform confirm modal -->
+<b:modal modalId="removeModal" modalTitle="${removeTitle}" modalIcon="glyphicon-warning-sign">
+	<button type="button" class="btn btn-primary remove-confirm"><spring:message code="alert.button.yes"/></button>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="alert.button.no"/></button>
+</b:modal>
+
+<!-- Unsaved changes modal -->
+<b:modal modalId="unsaveModal" modalIcon="glyphicon-warning-sign">
+	<button type="submit" class="btn btn-primary"><spring:message code="alert.button.yes"/></button>
+    <a href="" class="btn btn-warning"><spring:message code="alert.button.no"/></a>
+    <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="alert.button.cancel"/></button>
+</b:modal>
+
+<!-- Info message modal -->
+<b:modal modalId="infoModal" modalIcon="glyphicon-info-sign">
+	<button type="button" class="btn btn-primary" data-dismiss="modal"><spring:message code="alert.button.ok"/></button>
+</b:modal>

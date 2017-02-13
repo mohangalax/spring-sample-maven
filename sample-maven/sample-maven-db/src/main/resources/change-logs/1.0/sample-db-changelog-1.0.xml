@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	
+	<!-- =============================================== -->
+	<!--      	create AMS_PROVIDER_GROUPS table         -->
+	<!-- =============================================== -->
+     <changeSet author="mithun" id="create-table-provider_groups-version-1.0" runOnChange="true">
+     	<preConditions onFail="MARK_RAN">
+    		<not>
+    			<tableExists tableName="AMS_PROVIDER_GROUPS"/>
+    		</not>
+  		</preConditions>
+        <createTable tableName="AMS_PROVIDER_GROUPS">
+            <column name="PROV_GRP_ID" type="NUMBER(20)" remarks="primary key of provider_groups table">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="PK_PROVIDER_GROUPS"/>
+            </column>
+            <column name="PROV_GRP_NAME" type="VARCHAR2(50)" remarks="Provider group name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR2(50)" remarks="Provider description"/>
+            <column name="CREATE_DATE" type="TIMESTAMP" remarks="Time at which log created">
+            	<constraints nullable="false"/>
+            </column>
+			<column name="LAST_MOD_DATE" type="TIMESTAMP" remarks="Time at which log modified">
+				<constraints nullable="false"/>
+            </column>
+			<column name="CREATED_BY" type="VARCHAR2(40)" remarks="User who created the group first">
+				<constraints nullable="false"/>
+            </column>
+			<column name="LAST_MOD_BY" type="VARCHAR2(40)" remarks="User who modified the group last">
+				<constraints nullable="false"/>
+            </column>
+        </createTable>
+     </changeSet> 
+
+
+	<!-- =============================================== -->
+	<!-- 		sequence AMS_PROVIDER_GROUPS table 		 -->
+	<!-- =============================================== -->
+	<changeSet author="mohan" id="create-sequence-provider_groups-version-1.0"
+		runOnChange="true">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="AMS_PROVIDER_GROUP_SEQ" />
+			</not>
+		</preConditions>
+
+		<sql splitStatements="false">
+	     	<![CDATA[
+	     		begin
+		     		execute immediate('CREATE SEQUENCE AMS_PROVIDER_GROUP_SEQ
+		     			START WITH 1
+		  				NOCACHE');
+	  			end;
+	     	]]>
+		</sql>
+	</changeSet>
+	
+	<changeSet author="mohan" id="sqlfile-grant-version-1.0"
+		runOnChange="true">
+		<sqlFile path="change-logs/1.0/sql-script/grant_access.sql"/>
+	</changeSet>
+	
+	
+		<!-- =============================================== -->
+ 	<!--            create AMS_CATEGORY table            -->
+ 	<!-- =============================================== -->
+	<changeSet author="mohan" id="create-table-category-version-1.2">
+	 	<preConditions onFail="MARK_RAN">
+	         <not>
+	         	<tableExists tableName="AMS_CATEGORY"/>
+	         </not>
+	     </preConditions>
+	     <createTable tableName="AMS_CATEGORY">
+	         <column name="CATEGORY_ID" type="NUMBER(20)" remarks="primary key of category table">
+	         	<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CATEGORY"/>
+	         </column>
+	         <column name="NAME" type="VARCHAR2(20)" remarks="Category name">
+	         	<constraints nullable="false"/>
+	         </column>
+	         <column name="PROVIDER_ID" type="NUMBER(20)" remarks="Foreign key for Providers table">
+	         	<constraints foreignKeyName="FK_PROVIDERS_CATG" referencedTableName="AMS_PROVIDERS" referencedColumnNames="PROVIDER_ID" nullable="false"/>
+	         </column>
+	         <column name="DISABLED" type="VARCHAR2(1)" remarks="Category Disabled"/>
+	         <column name="CREATE_DATE" type="TIMESTAMP" remarks="Time at which log created">
+	         	<constraints nullable="false"/>
+	         </column>
+	         <column name="LAST_MOD_DATE" type="TIMESTAMP" remarks="Time at which log modified">
+	         	<constraints nullable="false"/>
+	         </column>
+	         <column name="CREATED_BY" type="VARCHAR2(40)" remarks="User who created the category first">
+	         	<constraints nullable="false"/>
+	         </column>
+	         <column name="LAST_MOD_BY" type="VARCHAR2(40)" remarks="User who modified the category last">
+	         	<constraints nullable="false"/>
+	         </column>
+	      </createTable>
+	      <sql>grant select, insert, update, delete on ams_category to VOD_USER</sql>
+	</changeSet>
+	
+</databaseChangeLog>

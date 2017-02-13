@@ -1,0 +1,21 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="b" uri="http://ais.ese.espn.com/tags/bootstrap" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<div id="artwork-tab" class="tab-pane fade">
+	
+	<form:hidden path="artworkIds"/>
+	
+	<div class="form-group">
+	    <div class="col-sm-6">
+	    	<span id="no-artwork"><spring:message code="form.label.content.noartwork"/></span>
+	    </div>
+	    <div class="col-sm-6">
+	    	<button id="add-collection-artwork" type="button" class="btn btn-primary"><spring:message code="form.button.collection.addartwork"/></button>
+	    	<button id="add-master-collection" type="button" class="btn btn-primary"><spring:message code="form.button.content.addcollection"/></button>
+	    	<button id="remove-collection-artwork" type="button" class="btn btn-default" disabled><spring:message code="form.button.collection.removeallartwork"/></button>
+	    </div>
+    </div>
+						    
+	<%@include file="../artwork/artworks_table.jsp" %>
+</div>

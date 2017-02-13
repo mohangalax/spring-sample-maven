@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- This bean resolves specific types of exceptions to corresponding logical - view names for error views. The default behaviour of DispatcherServlet - is to propagate all exceptions to the servlet container: this will happen - here with all other types of exceptions. -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" p:defaultErrorView="errors/uncaughtException" p:warnLogCategory="sample">
+		<property name="exceptionMappings">
+			<props>
+				<prop key=".AccessDeniedException">errors/accessDeniedException</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

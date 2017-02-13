@@ -1,0 +1,59 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<header>
+	<div id="menu">
+		<nav class="navbar navbar-inverse navbar-static-top">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav">
+					<li <c:if test="${navContext == 'Home'}">class="active"</c:if>><a href="/mediacentral"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="main.menu.home"/><span class="sr-only">(current)</span></a></li>
+					<li class="dropdown <c:if test='${navContext == \'Content\'}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-expand" aria-hidden="true"></span> <spring:message code="main.menu.content"/><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+				          <li><a href="<c:url value="/content/masters"/>"><spring:message code="dropdown.master.asset.manager"/></a></li>
+				          <li><a href="<c:url value="/content/assets"/>"><spring:message code="dropdown.asset.manager"/></a></li>
+				          <li class="nav-divider"></li>
+				          <li><a href="<c:url value="/content/categories"/>"><spring:message code="dropdown.category.manager"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.show.profile.manager"/></a></li>
+				        </ul>
+			      	</li>
+			      	<li class="dropdown <c:if test='${navContext == \'Artwork\'}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-picture" aria-hidden="true"></span> <spring:message code="main.menu.artwork"/><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+				          <li><a href="<c:url value="/artworks"/>"><spring:message code="dropdown.artwork.manager"/></a></li>
+				          <li><a href="<c:url value="/artworks/collections"/>"><spring:message code="dropdown.collection.manager"/></a></li>
+				        </ul>
+			      	</li>
+			      	<li class="dropdown <c:if test='${navContext == \'Production\'}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-cd" aria-hidden="true"></span> <spring:message code="main.menu.production"/><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.media.portal"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.media.work.requests"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.media.work.orders"/></a></li>
+				        </ul>
+			      	</li>
+					<li class="dropdown <c:if test='${navContext == \'Distribution\'}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> <spring:message code="main.menu.distribution"/><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						  <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.queue.manager"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.mtp.manager"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.mvpd.manager"/></a></li>
+				          <li class="nav-divider"></li>
+				          <li><a href="<c:url value="/distribution/sites"/>"><spring:message code="dropdown.site.manager"/></a></li>
+				        </ul>
+			      	</li>
+			      	<li class="dropdown <c:if test='${navContext == \'Reports\'}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> <spring:message code="main.menu.reports"/><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+				          <li><a href="<c:url value="/errors/inprogress"/>">Under construction...</a></li>
+				        </ul>
+			      	</li>
+			      	<li class="dropdown <c:if test='${navContext == \'Admin\'}'>active</c:if>"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <spring:message code="main.menu.admin"/><span class="caret"></span></a>
+						<ul class="dropdown-menu">
+				          <li><a href="<c:url value="/admin/providers"/>"><spring:message code="dropdown.provider.manager"/></a></li>
+				          <li><a href="<c:url value="/admin/providers/groups"/>"><spring:message code="dropdown.provider.group.manager"/></a></li>
+				          <li><a href="<c:url value="/admin/platforms"/>"><spring:message code="dropdown.platform.manager"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.user.profile.manager"/></a></li>
+				          <li><a href="<c:url value="/errors/inprogress"/>"><spring:message code="dropdown.user.environment.manager"/></a></li>
+				        </ul>
+			      	</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</header>
